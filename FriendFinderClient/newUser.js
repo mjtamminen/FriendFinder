@@ -20,6 +20,7 @@ bodyEl.innerHTML = `
     <input type="submit" name="submit" value="Create New User" id="submit-btn">
   </form>
       `
+      debugger
   const formEl = document.querySelector("#add-user-form")
   const usernameEl = document.querySelector("#username-input")
   const incomeEl = document.querySelector("#income-input")
