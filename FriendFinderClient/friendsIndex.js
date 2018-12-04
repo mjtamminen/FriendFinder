@@ -1,16 +1,14 @@
 const allFriends = []
 
-const fetchFriendsFromServer = () =>
-  fetch(URL)
+const fetchFriendsFromServer = () => {
+  fetch("http://localhost:3000/friends")
     .then(response => response.json())
-    .then((friends) => {
-      allFriends = friends
-      appendAllFriendsOntoPage()
-    })
+    .then(friends => appendAllFriendsOntoPage(friends))
+}
 
 //Sorting function of array based on api results
 
-const appendAllFriendsOntoPage = () => {
+const appendAllFriendsOntoPage = (friends) => {
   //Function to sort array into the correct order
   bodyEl.innerHTML = `
     <h2>Your friends ranked based on your image matching</h2>

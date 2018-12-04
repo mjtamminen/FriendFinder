@@ -2,6 +2,7 @@ class FriendsController < ApplicationController
 
   def index
     @friends = Friend.all
+    render json: @friends
   end
 
   def show
@@ -10,6 +11,7 @@ class FriendsController < ApplicationController
       render json: @friend
     else
       render json: {error: "Friend not found"}, status: 404
+    end
   end
-  
+
 end
