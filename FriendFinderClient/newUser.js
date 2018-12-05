@@ -1,4 +1,5 @@
 const bodyEl = document.querySelector("#body")
+let userId
 
 //Create new user form on page
 const showNewUserForm = () => {
@@ -49,7 +50,7 @@ const postNewUserToServer = (user) => {
     body: JSON.stringify(user)
   })
   .then(response => response.json())
-  .then(json => console.log(json))
+  .then(json => {userId = json.id})
   .catch(err => alert(err))
 }
 
