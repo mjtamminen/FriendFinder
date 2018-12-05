@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_113831) do
     t.integer "bushy_eyebrows"
     t.integer "chubby"
     t.integer "pale_skin"
-    t.string "race"
+    t.integer "race"
     t.integer "straight_hair"
     t.integer "wavy_hair"
     t.integer "heavy_makeup"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 2018_12_04_113831) do
     t.integer "bushy_eyebrows"
     t.integer "chubby"
     t.integer "pale_skin"
-    t.string "race"
-    t.integer "stright_hair"
+    t.integer "race"
+    t.integer "straight_hair"
     t.integer "wavy_hair"
     t.integer "heavy_makeup"
     t.integer "high_cheekbones"
@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 2018_12_04_113831) do
     t.integer "pointy_nose"
     t.integer "receding_hairline"
     t.integer "rosy_cheeks"
-    t.integer "straight_hair"
     t.integer "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

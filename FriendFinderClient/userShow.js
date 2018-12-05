@@ -11,7 +11,7 @@ const renderMyProfilePage = async () => {
   fetchMyEncounters()
   listingsButtonEl = document.querySelector("#listings-btn")
   listingsButtonEl.addEventListener("click", event => {
-    fetchFriendsFromServer()
+    appendAllFriendsOntoPage(newFriendSorted)
   })
 }
 
@@ -22,7 +22,6 @@ const fetchMyEncounters = () =>
 
 const appendAllEncountersOntoPage = (encounters) => {
   encounters.forEach(encounter => {
-    console.log(encounter)
     const newEncounter = document.createElement("li")
     newEncounter.className = "encounter-item"
     newEncounter.id = encounter.id

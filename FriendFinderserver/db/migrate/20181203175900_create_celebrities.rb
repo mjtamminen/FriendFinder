@@ -13,7 +13,7 @@ class CreateCelebrities < ActiveRecord::Migration[5.2]
       t.integer :bushy_eyebrows
       t.integer :chubby
       t.integer :pale_skin
-      t.string :race
+      t.integer :race
       t.integer :straight_hair
       t.integer :wavy_hair
       t.integer :heavy_makeup
