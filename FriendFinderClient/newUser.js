@@ -1,5 +1,5 @@
 const bodyEl = document.querySelector("#body")
-const url = `http://localhost:3000/users`
+let userId
 
 //Create new user form on page
 const showNewUserForm = () => {
@@ -20,11 +20,10 @@ bodyEl.innerHTML = `
     <input type="submit" name="submit" value="Create New User" id="submit-btn">
   </form>
       `
-      debugger
-  const formEl = document.querySelector("#add-user-form")
-  const usernameEl = document.querySelector("#username-input")
-  const incomeEl = document.querySelector("#income-input")
-  const statusEl = document.querySelector("#marital-input")
+  formEl = document.querySelector("#add-user-form")
+  usernameEl = document.querySelector("#username-input")
+  incomeEl = document.querySelector("#income-input")
+  statusEl = document.querySelector("#marital-input")
   formEl.addEventListener("submit", event => {
     event.preventDefault()
     const user = {
@@ -33,7 +32,7 @@ bodyEl.innerHTML = `
       marital_status: statusEl.value
     }
     postNewUserToServer(user)
-    formEl.reset()
+    selectCelebsYouLike()
     // bodyEl.innerHTML =
       //Show grid here of celebrity photos (Dario)
       //Add event listeners on all the images of celebrities
@@ -45,12 +44,13 @@ bodyEl.innerHTML = `
 
 //Post new user to server
 const postNewUserToServer = (user) => {
-  fetch(url, {
+  fetch("http://localhost:3000/users", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(user)
   })
   .then(response => response.json())
+  .then(json => {userId = json.id})
   .catch(err => alert(err))
 }
 

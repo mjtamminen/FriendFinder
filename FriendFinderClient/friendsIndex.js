@@ -1,16 +1,16 @@
-const allFriends = []
+let allFriends
+const brain =require('browser.js')
 
-const fetchFriendsFromServer = () =>
-  fetch(URL)
-    .then(response => response.json())
-    .then((friends) => {
-      allFriends = friends
-      appendAllFriendsOntoPage()
-    })
+function createFriendArray(friend){
+  let newArray=[]
+  for(characteristic in friend){
+      newArray.push(friend[characteristic])
+    }
+    debugger
+    return newArray.slice(3,22)
 
-//Sorting function of array based on api results
-
-const appendAllFriendsOntoPage = () => {
+  }
+const appendAllFriendsOntoPage = (friends) => {
   //Function to sort array into the correct order
   bodyEl.innerHTML = `
     <h2>Your friends ranked based on your image matching</h2>
@@ -32,4 +32,29 @@ const appendFriendOntoPage = (friend) => {
   viewBtnEl.addEventListener("click", event => {
     viewFriend(friend)
   })
+}
+
+
+const fetchFriendsFromServer = (training) => {
+  fetch("http://localhost:3000/friends")
+    .then(response => response.json())
+    .then(friends =>{
+      allFriends=friends
+      for(singleFriend of allFriends){
+        debugger
+
+        const network = new brain.NeuralNetwork()
+        network.train(training)
+
+        output= network.run(createFriendArray(singleFriend))
+        singleFriend.index=output
+
+      }
+      allFriends.sort(function(a, b) {
+        return a.index - b.index;
+      })
+
+      appendAllFriendsOntoPage(allFriends)
+
+    })
 }

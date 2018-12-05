@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :username
       t.integer :income
       t.string :marital_status
-
+      t.text :training, array: true, default: []
       t.timestamps
     end
   end
