@@ -1,6 +1,7 @@
 const bodyEl = document.querySelector("#body")
 let userId
 
+
 //Create new user form on page
 const showNewUserForm = () => {
 bodyEl.innerHTML = `

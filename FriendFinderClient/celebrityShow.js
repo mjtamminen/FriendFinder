@@ -1,45 +1,43 @@
 let state = []
 
 const selectCelebsYouLike = () => {
-  fetch(“http://localhost:3000/celebrities“)
+  fetch("http://localhost:3000/celebrities")
     .then(response => response.json())
-    .then(celebrities => {
-      state = celebrities
-      appendAllCelebritiesOntoPage(celebrities)})
+    .then(celebrities =>appendAllCelebritiesOntoPage(celebrities))
 }
 
 const appendAllCelebritiesOntoPage= (celebrities)=> {
 bodyEl.innerHTML = `
   <h2>Select the celebrities you like:</h2> <br>
-  <form id=“add-celebrity-form”>
-  <input type=“submit” name=“submit” value=“Select the celebrities you like” id=“submit-celeb-btn”>
+  <form id='add-celebrity-form'>
+  <input type='submit' name='submit' value='Select the celebrities you like' id='submit-celeb-btn'>
   </form>
   `
   celebrities.forEach(celebrity => appendCelebrityOntoPage(celebrity))
 }
 
 const appendCelebrityOntoPage = (celebrity) => {
-const div=document.createElement(‘div’)
+const div=document.createElement('div')
 div.innerHTML=`
 <h2>${celebrity.name}</h2>
-<img class=“friend-thumbnail” src=“${celebrity.image}“>
+<img class='friend-thumbnail' src='${celebrity.image}'>
 <br>
 `
-const input = document.createElement(‘input’)
-input.classList = “celeb_checkbox”
-input.type = “checkbox”
+const input = document.createElement('input')
+input.classList = 'celeb_checkbox'
+input.type = 'checkbox'
 input.name = celebrity.name
 input.id = celebrity.id
 input.celebrity = celebrity
 div.appendChild(input)
-celebForm=document.querySelector(“#add-celebrity-form”)
+celebForm=document.querySelector("#add-celebrity-form")
 celebForm.appendChild(div)
-celebForm.addEventListener(‘submit’, event=>{
+celebForm.addEventListener('submit', event=>{
 event.preventDefault()
 console.log(event)
 let training=[]
 let object
-const allCheckboxes=document.querySelectorAll(“.celeb_checkbox”)
+const allCheckboxes=document.querySelectorAll(".celeb_checkbox")
 allCheckboxes.forEach(checkbox =>{
   if(checkbox.checked){
     object={input: create_Array(checkbox.celebrity), output: [1]}

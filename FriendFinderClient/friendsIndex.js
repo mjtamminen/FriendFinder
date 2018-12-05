@@ -1,5 +1,5 @@
-let allFriends
-const brain =require('browser.js')
+// let allFriends
+// const brain =require('browser.js')
 
 function createFriendArray(friend){
   let newArray=[]
