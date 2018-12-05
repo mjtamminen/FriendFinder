@@ -11,8 +11,13 @@ const fetchFriendsFromServer = () => {
 const appendAllFriendsOntoPage = (friends) => {
   //Function to sort array into the correct order
   bodyEl.innerHTML = `
+    <button id="my-profile-button">View my profile page</button>
     <h2>Your friends ranked based on your image matching</h2>
   `
+  const myProfileButtonEl = document.querySelector("#my-profile-button")
+  myProfileButtonEl.addEventListener("click", event => {
+    renderMyProfilePage()
+  })
   friends.forEach(friend => appendFriendOntoPage(friend))
 }
 
@@ -26,7 +31,7 @@ const appendFriendOntoPage = (friend) => {
   <button class="view-btn">View ${friend.name}'s profile</button>
   `
   bodyEl.appendChild(newFriend)
-  const viewBtnEl = newFriend.querySelector(".view-btn")
+  viewBtnEl = newFriend.querySelector(".view-btn")
   viewBtnEl.addEventListener("click", event => {
     viewFriend(friend)
   })
