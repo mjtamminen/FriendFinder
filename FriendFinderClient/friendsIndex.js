@@ -1,20 +1,25 @@
-const allFriends = []
+let allFriends
+// const brain =require('browser.js')
 
-const fetchFriendsFromServer = () =>
-  fetch(URL)
-    .then(response => response.json())
-    .then((friends) => {
-      allFriends = friends
-      appendAllFriendsOntoPage()
-    })
+let newFriendSorted = []
 
-//Sorting function of array based on api results
+function createFriendArray(friend){
+  let newArray=[]
+  for(characteristic in friend){
+      newArray.push(friend[characteristic])
+    }
+    return newArray.slice(3,22)
 
-const appendAllFriendsOntoPage = () => {
-  //Function to sort array into the correct order
+  }
+const appendAllFriendsOntoPage = (friends) => {
   bodyEl.innerHTML = `
+    <button id="my-profile-button">View my profile page</button>
     <h2>Your friends ranked based on your image matching</h2>
   `
+  const myProfileButtonEl = document.querySelector("#my-profile-button")
+  myProfileButtonEl.addEventListener("click", event => {
+    renderMyProfilePage()
+  })
   friends.forEach(friend => appendFriendOntoPage(friend))
 }
 
@@ -28,8 +33,31 @@ const appendFriendOntoPage = (friend) => {
   <button class="view-btn">View ${friend.name}'s profile</button>
   `
   bodyEl.appendChild(newFriend)
-  const viewBtnEl = newFriend.querySelector(".view-btn")
+  viewBtnEl = newFriend.querySelector(".view-btn")
   viewBtnEl.addEventListener("click", event => {
     viewFriend(friend)
   })
+}
+
+const fetchFriendsFromServer = (training) => {
+
+  fetch("http://localhost:3000/friends")
+    .then(response => response.json())
+    .then(friends => {
+      allFriends=friends
+      for(singleFriend of allFriends){
+
+        const network = new brain.NeuralNetwork()
+        network.train(training)
+        output= network.run(createFriendArray(singleFriend))
+        singleFriend.index=output
+
+      }
+      newFriendSorted= allFriends.sort(function(a, b) {
+        return a.index - b.index;
+      })
+
+      appendAllFriendsOntoPage(newFriendSorted)
+
+    })
 }
