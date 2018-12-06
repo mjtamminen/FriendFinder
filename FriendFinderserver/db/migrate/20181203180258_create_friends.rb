@@ -4,6 +4,9 @@ class CreateFriends < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :image
       t.integer :age
+      t.integer :gender
+      t.integer :beard
+      t.integer :mustache
       t.integer :arched_eyebrows
       t.integer :big_lips
       t.integer :big_nose

@@ -8,13 +8,15 @@ function createFriendArray(friend){
   for(characteristic in friend){
       newArray.push(friend[characteristic])
     }
-    return newArray.slice(3,22)
+    return newArray.slice(3,25)
 
   }
 const appendAllFriendsOntoPage = (friends) => {
   bodyEl.innerHTML = `
+    <div class="friend-div">
     <button id="my-profile-button">View my profile page</button>
-    <h2>Your friends ranked based on your image matching</h2>
+    <h2>Our amazing algorithm thinks you should go on a date with the following users:</h2>
+    </div>
   `
   const myProfileButtonEl = document.querySelector("#my-profile-button")
   myProfileButtonEl.addEventListener("click", event => {
@@ -29,11 +31,12 @@ const appendFriendOntoPage = (friend) => {
   newFriend.id = friend.id
   newFriend.innerHTML = `
   <h2>${friend.name}</h2>
-  <img class="friend-thumbnail" src="${friend.image}">
+  <img class="friends-thumbnail" src="${friend.image}">
   <button class="view-btn">View ${friend.name}'s profile</button>
   <br>
   `
-  bodyEl.appendChild(newFriend)
+  const divEl = bodyEl.querySelector(".friend-div")
+  divEl.appendChild(newFriend)
   viewBtnEl = newFriend.querySelector(".view-btn")
   viewBtnEl.addEventListener("click", event => {
     viewFriend(friend)
@@ -55,7 +58,7 @@ const fetchFriendsFromServer = (training) => {
 
       }
       newFriendSorted= allFriends.sort(function(a, b) {
-        return a.index - b.index;
+        return b.index - a.index;
       })
 
       appendAllFriendsOntoPage(newFriendSorted)

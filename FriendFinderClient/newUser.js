@@ -9,15 +9,6 @@ bodyEl.innerHTML = `
     <h2>Create your profile!</h2>
     <input id="username-input" type="text" placeholder="Enter your username">
     <br>
-    <input id="income-input" type="text" placeholder="Enter your REAL income for 2018">
-    <br>
-    <p>Select your marital status:</p>
-    <select id="marital-input" name="marital-status">
-      <option value="married">Married</option>
-      <option value="single">Single</option>
-      <option value="in a relationship">In a relationship</option>
-    </select>
-    <br>
     <input type="submit" name="submit" value="Create New User" id="submit-btn">
   </form>
       `
@@ -28,9 +19,7 @@ bodyEl.innerHTML = `
   formEl.addEventListener("submit", event => {
     event.preventDefault()
     const user = {
-      username: usernameEl.value,
-      income: incomeEl.value,
-      marital_status: statusEl.value
+      username: usernameEl.value
     }
     postNewUserToServer(user)
     selectCelebsYouLike()

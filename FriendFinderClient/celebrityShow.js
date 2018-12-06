@@ -8,17 +8,14 @@ const selectCelebsYouLike = () => {
 
 const appendAllCelebritiesOntoPage= (celebrities)=> {
 bodyEl.innerHTML = `
-  <h2>Pick the celebrities who you find attractive</h2> <br>
+  <h2>Pick your celebrity crushes below!</h2> <br>
   <form id='add-celebrity-form'>
+  <input class='button' type='submit' name='submit' value='Submit your crushes (loading time up to 1 minute)' id='submit-celeb-btn'>
   </form>
   <br>
   `
   celebrities.forEach(celebrity => appendCelebrityOntoPage(celebrity))
   celebForm=document.querySelector("#add-celebrity-form")
-  let newDiv=document.createElement('div')
-  newDiv.innerHTML=`<br><br><br><input class='button' type='submit' name='submit' value='Submit your choices' id='submit-celeb-btn'> <br>
-`
-  celebForm.appendChild(newDiv)
   celebForm.addEventListener('submit', event=>{
     event.preventDefault()
     let training=[]
@@ -41,7 +38,7 @@ bodyEl.innerHTML = `
     for(characteristic in celeb) {
     newArray.push(celeb[characteristic])
     }
-  return newArray.slice(3,22)
+  return newArray.slice(3,25)
   }
 }
 

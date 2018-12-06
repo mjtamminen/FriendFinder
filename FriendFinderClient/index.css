@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  font-family: monospace;
+}
+
+#add-celebrity-form {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+.celebrity-card {
+    width: 200px;
+    padding: 10px;
+}
+
+.celebrity-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.celebrity-card h2 {
+  flex: 1 1 auto;
+}
+
+.img_wrapper {
+    min-height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.friend-thumbnail {
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#submit-celeb-btn {
+  color: white;
+  border-width: 2px;
+  background-color: red;
+  font-size: 20px;
+  padding: 10px;
+  }
+
+.friend-div {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.friends-thumbnail {
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}

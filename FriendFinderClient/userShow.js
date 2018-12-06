@@ -1,14 +1,18 @@
 const renderMyProfilePage = async () => {
+  fetchMyEncounters()
   const user = await getCurrentUserData(userId)
   bodyEl.innerHTML = `
     <h2>My Profile Page</h2>
     ${user.username}
-    <h3>My planned encounters</h3>
+    <h3>My suggested dates (not yet confirmed)</h3>
     <ul id="encounters-list"></ul>
-    <button id="listings-btn">See my suggested friends</button>
+    <hr>
+    <h3>My confirmed dates</h3><br>
+    <p>No dates yet confirmed :(</p>
+    <hr>
+    <button id="listings-btn">See my suggested matches</button>
   `
   encountersListEl = document.querySelector("#encounters-list")
-  fetchMyEncounters()
   listingsButtonEl = document.querySelector("#listings-btn")
   listingsButtonEl.addEventListener("click", event => {
     appendAllFriendsOntoPage(newFriendSorted)
@@ -26,8 +30,8 @@ const appendAllEncountersOntoPage = (encounters) => {
     newEncounter.className = "encounter-item"
     newEncounter.id = encounter.id
     newEncounter.innerHTML = `
-      <p class="friend-item">${encounter.friend_name} will be coming over for ${encounter.duration} minutes</p>
-      <button class="cancel-encounter">Cancel encounter</button>
+      <p class="friend-item">Date suggested to ${encounter.friend_name}</p>
+      <button class="cancel-encounter">Cancel date suggestion</button>
     `
     encountersListEl.appendChild(newEncounter)
     const cancelButtonEl = newEncounter.querySelector(".cancel-encounter")
