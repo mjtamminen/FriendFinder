@@ -18,6 +18,9 @@ bodyEl.innerHTML = `
   celebForm=document.querySelector("#add-celebrity-form")
   celebForm.addEventListener('submit', event=>{
     event.preventDefault()
+    window.open('https://www.youtube.com/watch?v=yhr1LFUVOfY', 'poppage', 'toolbars=0, scrollbars=1, location=0, statusbars=0, menubars=0, resizable=1, width=950, height=650, left = 300, top = 50');
+    const buttonEl = bodyEl.querySelector(".button")
+    buttonEl.value = "LOADING MATCHES - in the meantime enjoy this video :)"
     let training=[]
     let object
     const allCheckboxes=document.querySelectorAll(".celeb_checkbox")
