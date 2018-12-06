@@ -8,13 +8,17 @@ const selectCelebsYouLike = () => {
 
 const appendAllCelebritiesOntoPage= (celebrities)=> {
 bodyEl.innerHTML = `
-  <h2>Select the celebrities you like:</h2> <br>
+  <h2>Pick the celebrities who you find attractive</h2> <br>
   <form id='add-celebrity-form'>
-  <input type='submit' name='submit' value='Select the celebrities you like' id='submit-celeb-btn'>
   </form>
+  <br>
   `
   celebrities.forEach(celebrity => appendCelebrityOntoPage(celebrity))
   celebForm=document.querySelector("#add-celebrity-form")
+  let newDiv=document.createElement('div')
+  newDiv.innerHTML=`<br><br><br><input class='button' type='submit' name='submit' value='Submit your choices' id='submit-celeb-btn'> <br>
+`
+  celebForm.appendChild(newDiv)
   celebForm.addEventListener('submit', event=>{
     event.preventDefault()
     let training=[]
@@ -43,11 +47,14 @@ bodyEl.innerHTML = `
 
 const appendCelebrityOntoPage = (celebrity) => {
   const div=document.createElement('div')
+  div.classList.add('card')
   div.innerHTML=`
   <h2>${celebrity.name}</h2>
-  <img class='friend-thumbnail' src='${celebrity.image}'>
-  <br>
+  <div class="img_wrapper">
+    <img class='friend-thumbnail' src='${celebrity.image}'>
+  </div>
   `
+  div.className="celebrity-card"
   const input = document.createElement('input')
   input.classList = 'celeb_checkbox'
   input.type = 'checkbox'
@@ -55,7 +62,13 @@ const appendCelebrityOntoPage = (celebrity) => {
   input.id = celebrity.id
   input.celebrity = celebrity
   div.appendChild(input)
+
   celebForm=document.querySelector("#add-celebrity-form")
   celebForm.appendChild(div)
-
+  const celebImgEl = div.querySelector('.friend-thumbnail')
+  celebImgEl.addEventListener('click', event => {
+    celebImgEl.style.borderStyle ='solid'
+    celebImgEl.style.borderColor ='red'
+    input.checked=!input.checked
+  })
 }

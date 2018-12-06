@@ -7,6 +7,7 @@ const viewFriend = (friend) => {
   `
   backBtnEl = document.querySelector("#back-btn")
   backBtnEl.addEventListener("click", event => {
+    
     appendAllFriendsOntoPage(newFriendSorted)
   })
   createEncounterEl = document.querySelector("#create-encounter-btn")
