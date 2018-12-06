@@ -31,6 +31,7 @@ const appendFriendOntoPage = (friend) => {
   <h2>${friend.name}</h2>
   <img class="friend-thumbnail" src="${friend.image}">
   <button class="view-btn">View ${friend.name}'s profile</button>
+  <br>
   `
   bodyEl.appendChild(newFriend)
   viewBtnEl = newFriend.querySelector(".view-btn")
